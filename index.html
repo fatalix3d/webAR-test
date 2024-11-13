@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content='width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes'>
-    <title>Unity WebGL Player | unitry-web-ar-test</title>
+    <title>Unity WebGL Player | ar-city-webar-unity</title>
     <link rel="stylesheet" href="TemplateData/style.css">
 
     <style>
@@ -62,7 +62,7 @@
     </div>
     <script src="arcamera.js" type="text/javascript"></script>
     <script src="wtracker.js" type="text/javascript"></script>
-    <script src="Build/09.loader.js"></script>
+    <script src="Build/_WEBGL_BUILD_TEST.loader.js"></script>
     <script>
         var initialize = async() =>{
             var unityCanvas = document.querySelector("#unity-canvas");
@@ -96,12 +96,12 @@
             
             document.getElementById('startARDiv').style.display = 'none';
             createUnityInstance(document.querySelector("#unity-canvas"), {
-                    dataUrl: "Build/09.data",
-                    frameworkUrl: "Build/09.framework.js",
-                    codeUrl: "Build/09.wasm",
+                    dataUrl: "Build/_WEBGL_BUILD_TEST.data",
+                    frameworkUrl: "Build/_WEBGL_BUILD_TEST.framework.js",
+                    codeUrl: "Build/_WEBGL_BUILD_TEST.wasm",
                     streamingAssetsUrl: "StreamingAssets",
-                    companyName: "DefaultCompany",
-                    productName: "unitry-web-ar-test",
+                    companyName: "fatalix3d",
+                    productName: "ar-city-webar-unity",
                     productVersion: "0.1",
                     //webglContextAttributes: { "preserveDrawingBuffer": true },
                     // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
