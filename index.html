@@ -17,30 +17,84 @@
             min-height: -webkit-fill-available;
             width: 100vw;
             overflow: hidden;
+            background-color: rgb(54, 54, 54);
+            font-family: Arial, sans-serif;
         }
         .ctaDiv {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             position: absolute;
-            left: 0;
-            right: 0;
-            top: 0;
-            bottom: 0;
-            background: #fffa;
-            z-index: 99;
+            inset: 0;
+            background-position: bottom;
+            background-repeat: no-repeat;
+            background-size: contain;
+            padding-bottom: 200px; /* Отступ для изображения камеры */
         }
+
+        /* Стили для логотипа */
+        .logo {
+            width: 100px;
+            margin-bottom: 40px;
+            margin-top: 50px;
+        }
+
+        .photo-logo {
+            width: 400px;
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+
+        /* Стили для текста */
+        .ctaDiv p {
+            text-align: center;
+            width: 80vw;
+            color: white;
+            margin: 5px 0;
+        }
+
+        .ctaDiv p:first-of-type {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .ctaDiv p:last-of-type {
+            font-size: 18px;
+            opacity: 0.8;
+        }
+
+        /* Стили для кнопки */
+        #startARButton {
+            background-color: #E31E24;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 15px 60px;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+#startARButton:hover {
+    background-color: #c71920;
+}
     </style>
 </head>
 <body>
     <video id="webcam-video" muted autoplay playsinline style="width:1px;position:absolute"></video>
     <canvas id="video-canvas" style="width:100%; height:100%; object-fit:cover; position:absolute"></canvas>
     <div id="startARDiv" class="ctaDiv">
+        <img src="TemplateData/logo.png" alt="Нефтьмагистраль" class="logo">
         <select id="chooseCamSel" style="display: none;" onchange="SelectCam()"></select>
-        <p style="text-align: center; width:60vw">Доступ к камере</p>
-        <p style="text-align: center; width:60vw">Для отображения дополненной реальности вам нужно разрешить доступ к камере</p>
+        <p>Доступ к камере</p>
+        <p>Для отображения дополненной реальности вам нужно разрешить доступ к камере</p>
         <button id="startARButton" style="display:none" onclick="StartAR()">Разрешить</button>
+        <img src="TemplateData/camera-bg.png" alt="Фото" class="photo-logo">
+
     </div>
     <div id="screenshotDiv" style="display: none;" class="ctaDiv">
         <div style="position:relative; background-color:white; padding:10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.25);">
