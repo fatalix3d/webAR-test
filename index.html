@@ -7,10 +7,46 @@
     <link rel="stylesheet" href="TemplateData/style.css">
 
     <style>
+         @font-face {
+            font-family: 'Gilroy';
+            src: url('fonts/Gilroy-Light.woff2') format('woff2'),
+                 url('fonts/Gilroy-Light.woff') format('woff');
+            font-weight: 300;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Gilroy';
+            src: url('fonts/Gilroy-Regular.woff2') format('woff2'),
+                 url('fonts/Gilroy-Regular.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Gilroy';
+            src: url('fonts/Gilroy-Bold.woff2') format('woff2'),
+                 url('fonts/Gilroy-Bold.woff') format('woff');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Gilroy';
+            src: url('fonts/Gilroy-Black.woff2') format('woff2'),
+                 url('fonts/Gilroy-Black.woff') format('woff');
+            font-weight: 900;
+            font-style: normal;
+            font-display: swap;
+        }
         html{
             height: -webkit-fill-available;
         }
         body {
+            font-family: 'Gilroy', sans-serif;
             margin: 0;
             padding: 0;
             min-height: 100vh;
@@ -77,6 +113,24 @@
             font-size: 18px;
             opacity: 0.8;
         }
+
+       
+
+        .light {
+            font-weight: 300;
+        }
+
+        .regular {
+            font-weight: 400;
+        }
+
+        .bold {
+            font-weight: 700;
+        }
+
+        .black {
+            font-weight: 900;
+        }
     </style>
 </head>
 <body>
@@ -85,19 +139,19 @@
     <div id="startARDiv" class="ctaDiv">
         <img src="TemplateData/logo.png" alt="Нефтьмагистраль" class="logo">
         <select id="chooseCamSel" style="display: none;" onchange="SelectCam()"></select>
-        <p>Доступ к камере</p>
-        <p>Для отображения дополненной реальности вам нужно разрешить доступ к камере</p>
+        <p class="black">Доступ к камере</p>
+        <p class="light">Для отображения дополненной реальности вам нужно разрешить доступ к камере</p>
         <button id="startARButton" style="display:none" onclick="StartAR()">Разрешить</button>
         <img src="TemplateData/camera-bg.png" alt="Фото" class="photo-logo">
     </div>
     <div id="screenshotDiv" style="display: none;" class="ctaDiv">
         <div style="position:relative; background-color:white; padding:10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.25);">
             <img id="screenshotImg" src="" alt="screenshot" style="width:80vw; height:80vh">
-            <button onclick="document.getElementById('screenshotDiv').style.display = 'none';" style="position:absolute; transform:translateY(-100%); right:0; top:0">Close</button>
+            <button class="black" onclick="document.getElementById('screenshotDiv').style.display = 'none';" style="position:absolute; transform:translateY(-100%); right:0; top:0">Close</button>
         </div>
     </div>
-    <div id="errorDiv" class="ctaDiv" style="display: none; background:#aaa">
-        <p id="errorText" style="text-align: center; width:60vw; color:white"></p>
+    <div id="errorDiv" class="ctaDiv" style="display: none; background:#000000">
+        <p class="black" id="errorText" style="text-align: center; width:60vw; color:rgb(255, 255, 255)"></p>
     </div>
     <div id="unity-container" class="unity-mobile">
         <canvas id="unity-canvas" style="width: 100%; height: 100%; background: #0000; z-index: -99;"></canvas>
@@ -195,7 +249,7 @@
             catch (err) {
                 //user denied camera permission - show error panel
                 console.error("getUserMedia error - " , err);
-                ShowError("Failed to start the experience. Camera permission was denied");
+                ShowError("Не удалось запустить приложение. Разрешение на камеру отклонено");
                 window.requestingForCameraPermission = false;
             }           
         }
@@ -312,7 +366,8 @@
             })
             .catch(error=>{
                 console.error("Failed to start motion sensors - " + error);
-                ShowError("Failed to start the experience. " + error);
+                //ShowError("Failed to start the experience. " + error);
+                ShowError("Не удалось запустить приложение." + error);
 
             });
         }
