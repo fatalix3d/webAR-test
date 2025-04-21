@@ -3,58 +3,20 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content='width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes'>
-    <title>Unity WebGL Player | ar-city-webar-unity</title>
+    <title>Unity WebGL Player | unity-sberww2-webar</title>
     <link rel="stylesheet" href="TemplateData/style.css">
 
     <style>
-         @font-face {
-            font-family: 'Gilroy';
-            src: url('fonts/Gilroy-Light.woff2') format('woff2'),
-                 url('fonts/Gilroy-Light.woff') format('woff');
-            font-weight: 300;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: 'Gilroy';
-            src: url('fonts/Gilroy-Regular.woff2') format('woff2'),
-                 url('fonts/Gilroy-Regular.woff') format('woff');
-            font-weight: 400;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: 'Gilroy';
-            src: url('fonts/Gilroy-Bold.woff2') format('woff2'),
-                 url('fonts/Gilroy-Bold.woff') format('woff');
-            font-weight: 700;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: 'Gilroy';
-            src: url('fonts/Gilroy-Black.woff2') format('woff2'),
-                 url('fonts/Gilroy-Black.woff') format('woff');
-            font-weight: 900;
-            font-style: normal;
-            font-display: swap;
-        }
         html{
             height: -webkit-fill-available;
         }
         body {
-            font-family: 'Gilroy', sans-serif;
             margin: 0;
             padding: 0;
             min-height: 100vh;
             min-height: -webkit-fill-available;
             width: 100vw;
             overflow: hidden;
-            background-color: rgb(0, 0, 0);
-
         }
         .ctaDiv {
             display: flex;
@@ -66,70 +28,8 @@
             right: 0;
             top: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.0);
+            background: #fffa;
             z-index: 99;
-        }
-                /* Стили для логотипа */
-                .logo {
-            width: 70px;
-            margin-bottom: 40px;
-            margin-top: 50px;
-        }
-
-        .photo-logo {
-            width: 300px;
-            margin-bottom: 20px;
-            margin-top: 20px;
-            z-index: -1
-        }
-                /* Стили для кнопки */
-                #startARButton {
-            background-color: #E31E24;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            padding: 15px 60px;
-            font-size: 18px;
-            font-weight: bold;
-            margin-top: 30px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-                /* Стили для текста */
-                .ctaDiv p {
-            text-align: center;
-            width: 80vw;
-            color: white;
-            margin: 5px 0;
-        }
-
-        .ctaDiv p:first-of-type {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .ctaDiv p:last-of-type {
-            font-size: 18px;
-            opacity: 0.8;
-        }
-
-       
-
-        .light {
-            font-weight: 300;
-        }
-
-        .regular {
-            font-weight: 400;
-        }
-
-        .bold {
-            font-weight: 700;
-        }
-
-        .black {
-            font-weight: 900;
         }
     </style>
 </head>
@@ -137,21 +37,18 @@
     <video id="webcam-video" muted autoplay playsinline style="width:1px;position:absolute"></video>
     <canvas id="video-canvas" style="width:100%; height:100%; object-fit:cover; position:absolute"></canvas>
     <div id="startARDiv" class="ctaDiv">
-        <img src="TemplateData/logo.png" alt="Нефтьмагистраль" class="logo">
         <select id="chooseCamSel" style="display: none;" onchange="SelectCam()"></select>
-        <p class="black">Доступ к камере</p>
-        <p class="light">Для отображения дополненной реальности вам нужно разрешить доступ к камере</p>
-        <button id="startARButton" style="display:none" onclick="StartAR()">Разрешить</button>
-        <img src="TemplateData/camera-bg.png" alt="Фото" class="photo-logo">
+        <p style="text-align: center; width:60vw">This augmented reality experience requires access to your device's camera and motion sensors</p>
+        <button id="startARButton" style="display:none" onclick="StartAR()">ALLOW ACCESS</button>
     </div>
     <div id="screenshotDiv" style="display: none;" class="ctaDiv">
         <div style="position:relative; background-color:white; padding:10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.25);">
             <img id="screenshotImg" src="" alt="screenshot" style="width:80vw; height:80vh">
-            <button class="black" onclick="document.getElementById('screenshotDiv').style.display = 'none';" style="position:absolute; transform:translateY(-100%); right:0; top:0">Close</button>
+            <button onclick="document.getElementById('screenshotDiv').style.display = 'none';" style="position:absolute; transform:translateY(-100%); right:0; top:0">Close</button>
         </div>
     </div>
-    <div id="errorDiv" class="ctaDiv" style="display: none; background:#000000">
-        <p class="black" id="errorText" style="text-align: center; width:60vw; color:rgb(255, 255, 255)"></p>
+    <div id="errorDiv" class="ctaDiv" style="display: none; background:#aaa">
+        <p id="errorText" style="text-align: center; width:60vw; color:white"></p>
     </div>
     <div id="unity-container" class="unity-mobile">
         <canvas id="unity-canvas" style="width: 100%; height: 100%; background: #0000; z-index: -99;"></canvas>
@@ -204,7 +101,7 @@
                     codeUrl: "Build/webAR-test.wasm",
                     streamingAssetsUrl: "StreamingAssets",
                     companyName: "fatalix3d",
-                    productName: "ar-city-webar-unity",
+                    productName: "unity-sberww2-webar",
                     productVersion: "0.1",
                     //webglContextAttributes: { "preserveDrawingBuffer": true },
                     // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
@@ -249,7 +146,7 @@
             catch (err) {
                 //user denied camera permission - show error panel
                 console.error("getUserMedia error - " , err);
-                ShowError("Не удалось запустить приложение. Разрешение на камеру отклонено");
+                ShowError("Failed to start the experience. Camera permission was denied");
                 window.requestingForCameraPermission = false;
             }           
         }
@@ -310,7 +207,6 @@
                 }
             });
             var select = document.getElementById("chooseCamSel");
-            select.style.opacity = "0";
             select.style.display = "block";
             var count = 0;
             //reverse array because some Android phones can't distinguish front and back cams at first load
@@ -332,7 +228,6 @@
         }
         function SelectCam(){
             var select = document.getElementById("chooseCamSel");
-            select.style.opacity = "0";
             window.deviceId = select.value;
             window.WEBCAM_SETTINGS.video['deviceId'] = deviceId;
             //console.log(window.WEBCAM_SETTINGS);
@@ -366,8 +261,7 @@
             })
             .catch(error=>{
                 console.error("Failed to start motion sensors - " + error);
-                //ShowError("Failed to start the experience. " + error);
-                ShowError("Не удалось запустить приложение." + error);
+                ShowError("Failed to start the experience. " + error);
 
             });
         }
